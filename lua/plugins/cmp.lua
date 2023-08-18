@@ -4,8 +4,6 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-cmdline" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "hrsh7th/cmp-path" },
@@ -55,30 +53,6 @@ return {
           documentation = cmp.config.window.bordered()
         },
       }
-    end,
-    config = function(_, opts)
-      local cmp = require("cmp")
-
-      cmp.setup(opts)
-
-      cmp.setup.cmdline({ "/", "?" }, {
-        mapping = cmp.mapping.preset.cmdline(), -- Tab for selection (arrows needed for selecting past items)
-        sources = { { name = "buffer" } },
-        view = {
-          entries = "custom",
-        },
-      })
-
-      cmp.setup.cmdline({ ":" }, {
-        mapping = cmp.mapping.preset.cmdline(), -- Tab for selection (arrows needed for selecting past items)
-        sources = {
-          { name = "cmdline" },
-          { name = "path" }
-        },
-        view = {
-          entries = "custom",
-        },
-      })
     end,
   },
 
