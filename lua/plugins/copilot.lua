@@ -2,7 +2,8 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    event = "InsertEnter",
+    cmd = "Copilot",
+    build = ":Copilot auth",
     keys = {
       { "<M-]>", function() require("copilot.suggestion").next() end,        mode = "i", desc = "Copilot Next" },
       { "<M-[>", function() require("copilot.suggestion").prev() end,        mode = "i", desc = "Copilot Previous" },
