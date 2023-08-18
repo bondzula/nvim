@@ -18,7 +18,7 @@ return {
         enable = true,
         enable_autocmd = false,
       },
-      ensure_installed = require('util.lists').treesitter_parsers,
+      ensure_installed = {},
       incremental_selection = {
         enable = true,
         keymaps = {
