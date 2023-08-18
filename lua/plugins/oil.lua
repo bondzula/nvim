@@ -1,9 +1,9 @@
 return {
   {
-    'stevearc/oil.nvim',
+    "stevearc/oil.nvim",
     keys = {
-      { "<leader>ff", "<cmd>lua require('oil').open()<cr>",         desc = "File Browser" },
-      { "<leader>fl", "<cmd>lua require('oil').toggle_float()<cr>", desc = "File Browser (Floating)" },
+      { "<leader>fl", "<cmd>lua require('oil').open()<cr>", desc = "File Browser" },
+      { "<leader>fL", "<cmd>lua require('oil').toggle_float()<cr>", desc = "File Browser (Floating)" },
     },
     opts = {
       keymaps = {
@@ -17,7 +17,7 @@ return {
       float = {
         -- Padding around the floating window
         padding = 2,
-        max_width = 80,
+        max_width = vim.fn.round(vim.o.columns * 0.8),
         max_height = 0,
         border = "rounded",
         win_options = {
