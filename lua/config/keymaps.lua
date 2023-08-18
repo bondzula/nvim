@@ -43,7 +43,3 @@ vim.keymap.set("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open Quickfix List
 
 -- quit
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-
--- floating terminal
-vim.keymap.set("n", "<leader>ot", function() Util.float_term(nil, { cwd = Util.get_root() }) end, { desc = "Terminal (cwd)" })
-vim.keymap.set("n", "<leader>oT", function() Util.float_term() end, { desc = "Terminal (root dir)" })
