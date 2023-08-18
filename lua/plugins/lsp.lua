@@ -21,8 +21,7 @@ return {
       { "<leader>cl", "<cmd>LspInfo<cr>", desc = "LSP Info" }
     },
     dependencies = {
-      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
-      { "folke/neodev.nvim",  opts = {} },
+      { "folke/neodev.nvim", opts = {} },
     },
     opts = {
       diagnostics = {
