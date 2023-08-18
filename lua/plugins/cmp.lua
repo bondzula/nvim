@@ -6,12 +6,11 @@ return {
     dependencies = {
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-cmdline" },
-      { "hrsh7th/cmp-nvim-lua" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "hrsh7th/cmp-path" },
 
-      { "saadparwaiz1/cmp_luasnip" },
+      -- { "saadparwaiz1/cmp_luasnip" },
       { "onsails/lspkind-nvim" },
       { "petertriho/cmp-git" },
     },
@@ -19,11 +18,11 @@ return {
       local cmp = require("cmp")
 
       return {
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        },
+        -- snippet = {
+        --   expand = function(args)
+        --     require("luasnip").lsp_expand(args.body)
+        --   end,
+        -- },
         mapping = {
           -- Navigate through completion menu
           ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -44,10 +43,9 @@ return {
         sources = {
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
-          { name = "luasnip" },
-          { name = "git" },
+          -- { name = "luasnip" },
           { name = "path" },
-          { name = "nvim_lua" },
+          { name = "git" },
         },
         view = {
           entries = "native",
