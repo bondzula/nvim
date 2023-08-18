@@ -23,8 +23,6 @@ return {
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
       { "folke/neodev.nvim",  opts = {} },
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
     },
     opts = {
       diagnostics = {
@@ -39,7 +37,51 @@ return {
         Warn = " ",
         Hint = " ",
         Info = " ",
-      }
+      },
+
+      servers = {
+        bashls = {},
+        cssls = {},
+        dockerls = {},
+        gopls = {},
+        html = {},
+        intelephense = {},
+        jsonls = {},
+        marksman = {},
+        pylsp = {},
+        rust_analyzer = {},
+        svelte = {},
+        tailwindcss = {},
+        terraformls = {},
+        volar = {},
+        lua_ls = {
+          settings = {
+            Lua = {
+              runtime = {
+                version = "LuaJIT",
+              },
+              workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = {
+                  [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                  [vim.fn.stdpath "config" .. "/lua"] = true,
+                },
+              },
+              format = {
+                enable = true,
+                defaultConfig = {
+                  indent_style = "space",
+                  indent_size = "2",
+                  max_line_length = "unset",
+                }
+              },
+              telemetry = {
+                enable = false,
+              },
+            }
+          }
+        },
+      },
     },
     config = function(_, opts)
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -48,121 +90,21 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
+
+      -- Go through the server list, and apply the setup
+      local function setup(server)
+        local server_opts = vim.tbl_deep_extend("force", {
+          capabilities = vim.deepcopy(capabilities),
+          on_attach = on_attach,
+        }, opts.servers[server] or {})
+
+        require("lspconfig")[server].setup(server_opts)
+      end
+
+      for server in pairs(opts.servers) do
+        setup(server)
+      end
     end,
-  },
-
-  {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    keys = {
-      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
-    },
-    dependencies = {
-      { "neovim/nvim-lspconfig" },
-    },
-    opts = {},
-  },
-
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      { "neovim/nvim-lspconfig" },
-    },
-    opts = {
-      handlers = {
-        -- Entry without a key will be the default handler
-        function(server_name)
-          require("lspconfig")[server_name].setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-          })
-        end,
-
-        ["lua_ls"] = function()
-          require("lspconfig").lua_ls.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                runtime = {
-                  version = "LuaJIT",
-                },
-                workspace = {
-                  -- Make the server aware of Neovim runtime files
-                  library = {
-                    [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                    [vim.fn.stdpath "config" .. "/lua"] = true,
-                  },
-                },
-                format = {
-                  enable = true,
-                  defaultConfig = {
-                    indent_style = "space",
-                    indent_size = "2",
-                    max_line_length = "unset",
-                  }
-                },
-                telemetry = {
-                  enable = false,
-                },
-              }
-            }
-          })
-        end,
-
-        ["gopls"] = function()
-          require("lspconfig").gopls.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-            settings = {
-              gopls = {
-                completeUnimported = true,
-                usePlaceholders = true,
-                analyses = {
-                  unusedparams = true,
-                },
-                hints = {
-                  assignVariableTypes = true,
-                  compositeLiteralFields = true,
-                  constantValues = true,
-                  functionTypeParameters = true,
-                  parameterNames = true,
-                  rangeVariableTypes = true
-                },
-              }
-            }
-          })
-        end
-
-      },
-      ensure_installed = {
-        "ansiblels",
-        "astro",
-        "bashls",
-        "cssls",
-        -- "deno",
-        "dockerls",
-        "emmet_ls",
-        "eslint",
-        "gopls",
-        "html",
-        "intelephense",
-        "jsonls",
-        "lua_ls",
-        "marksman",
-        -- "nil_ls",
-        "prismals",
-        "pylsp",
-        "pyright",
-        "rust_analyzer",
-        "sqlls",
-        "stylelint_lsp",
-        "svelte",
-        "tailwindcss",
-        "terraformls",
-        "volar",
-      },
-    },
   },
 
   -- Typescript
