@@ -110,6 +110,7 @@ return {
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       on_attach = on_attach,
       settings = {
