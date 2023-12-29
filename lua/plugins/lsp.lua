@@ -17,7 +17,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>cl", "<cmd>LspInfo<cr>", desc = "LSP Info" }
+      { "<leader>cl", "<cmd>LspInfo<cr>", desc = "LSP Info" },
     },
     dependencies = {
       { "folke/neodev.nvim", opts = {} },
@@ -41,17 +41,46 @@ return {
         bashls = {},
         cssls = {},
         dockerls = {},
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              codelenses = {
+                gc_details = false,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+              },
+              hints = {
+                assignVariableTypes = true,
+                compositeLiteralFields = true,
+                compositeLiteralTypes = true,
+                constantValues = true,
+                functionTypeParameters = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+              analyses = {
+                fieldalignment = true,
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
+              usePlaceholders = true,
+              completeUnimported = true,
+              staticcheck = true,
+              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+              semanticTokens = true,
+            },
+          },
+        },
         html = {},
         intelephense = {},
         jsonls = {},
-        marksman = {},
-        pylsp = {},
-        rust_analyzer = {},
-        svelte = {},
-        tailwindcss = {},
-        terraformls = {},
-        volar = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -61,24 +90,26 @@ return {
               workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = {
-                  [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                  [vim.fn.stdpath "config" .. "/lua"] = true,
+                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                  [vim.fn.stdpath("config") .. "/lua"] = true,
                 },
-              },
-              format = {
-                enable = true,
-                defaultConfig = {
-                  indent_style = "space",
-                  indent_size = "2",
-                  max_line_length = "unset",
-                }
               },
               telemetry = {
                 enable = false,
               },
-            }
-          }
+            },
+          },
         },
+        marksman = {},
+        nil_ls = {},
+        pylsp = {},
+        rust_analyzer = {},
+        sqls = {},
+        svelte = {},
+        tailwindcss = {},
+        terraformls = {},
+        volar = {},
+        yamls = {},
       },
     },
     config = function(_, opts)
@@ -122,7 +153,7 @@ return {
         tsserver_plugins = {},
         -- described below
         tsserver_format_options = {
-          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHints = "all",
           includeInlayParameterNameHintsWhenArgumentMatchesName = false,
           includeInlayFunctionParameterTypeHints = true,
           includeInlayVariableTypeHints = true,
@@ -134,5 +165,5 @@ return {
         tsserver_file_preferences = {},
       },
     },
-  }
+  },
 }
