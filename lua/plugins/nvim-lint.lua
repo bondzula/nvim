@@ -6,14 +6,14 @@ return {
         return vim.api.nvim_buf_get_name(0)
       end
 
-      require('lint').linters.deadnix = {
-        name = 'deadnix',
-        cmd = 'deadnix',
+      require("lint").linters.deadnix = {
+        name = "deadnix",
+        cmd = "deadnix",
         stdin = true,
-        args = { '-o', 'json', get_file_name },
+        args = { "-o", "json", get_file_name },
         ignore_exitcode = true,
         parser = function(output, bufnr)
-          if output == '' then
+          if output == "" then
             return {}
           end
           local decoded = vim.json.decode(output)
@@ -31,7 +31,7 @@ return {
                 col = item.column - 1,
                 end_col = item.endColumn,
                 severity = vim.diagnostic.severity.WARN,
-                source = 'deadnix',
+                source = "deadnix",
                 message = item.message,
               })
             end
@@ -41,14 +41,14 @@ return {
         end,
       }
 
-      require('lint').linters.ltrs = {
-        name = 'ltrs',
-        cmd = 'ltrs',
+      require("lint").linters.ltrs = {
+        name = "ltrs",
+        cmd = "ltrs",
         stdin = true,
-        args = { 'check', '-m', '-r', get_file_name },
+        args = { "check", "-m", "-r", get_file_name },
         ignore_exitcode = true,
         parser = function(output, bufnr)
-          if output == '' then
+          if output == "" then
             return {}
           end
           local decoded = vim.json.decode(output)
@@ -65,7 +65,7 @@ return {
               col = item.moreContext.line_offset,
               end_col = item.moreContext.line_offset + item.context.length,
               severity = vim.diagnostic.severity.WARN,
-              source = 'ltrs',
+              source = "ltrs",
               message = item.rule.description,
             })
           end
@@ -74,16 +74,21 @@ return {
         end,
       }
 
-      require('lint').linters_by_ft = {
-        javascript = { "eslint_d", },
-        json = { "jsonlint", },
-        markdown = { 'ltrs', },
-        go = { "cspell", },
-        nix = { "statix", "deadnix", },
-        php = { "phpstan", },
-        tsx = { "eslintd", },
-        typescript = { "eslint_d", },
-        typescriptreact = { "eslint_d", },
+      require("lint").linters_by_ft = {
+        dockerfile = { "hadolint" },
+        dotenv = { "dotenv_linter" },
+        gitcommit = { "commitlint" },
+        go = { "cspell" },
+        javascript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        json = { "jsonlint" },
+        markdown = { "ltrs" },
+        nix = { "statix", "deadnix" },
+        php = { "phpstan" },
+        tsx = { "eslint_d" },
+        typescript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        vue = { "eslint_d" },
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -97,6 +102,6 @@ return {
           require("lint").try_lint()
         end,
       })
-    end
-  }
+    end,
+  },
 }
