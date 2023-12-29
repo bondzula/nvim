@@ -32,10 +32,10 @@ return {
         update_in_insert = false,
       },
       signs = {
-        Error = " ",
-        Warn = " ",
-        Hint = " ",
-        Info = " ",
+        Error = "",
+        Warn = "",
+        Hint = "",
+        Info = "󰋽",
       },
 
       servers = {
