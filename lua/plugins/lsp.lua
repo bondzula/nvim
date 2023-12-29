@@ -3,7 +3,6 @@ local on_attach = function(_, bufferNum)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufferNum, desc = "Go to Declaration" })
   vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = bufferNum, desc = "Go to Type Definition" })
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufferNum, desc = "Go to Implementation" })
-  vim.keymap.set("n", "<leader>cf", vim.lsp.buf.format, { buffer = bufferNum, desc = "Format Document" })
 end
 
 local capabilities = vim.tbl_deep_extend(
