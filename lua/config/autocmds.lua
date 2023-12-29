@@ -92,3 +92,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'Setup format on save',
   callback = setup_autoformat,
 })
+
+-- Disable diagnostics in insert and select mode
+-- This is already default behavior, but it required action before
+-- it activates, this makes it instant.
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = { 'n:i', 'v:s' },
+  desc = 'Disable diagnostics in insert and select mode',
+  callback = function(e) vim.diagnostic.disable(e.buf) end
+})
+
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = 'i:n',
+  desc = 'Enable diagnostics when leaving insert mode',
+  callback = function(e) vim.diagnostic.enable(e.buf) end
+})
