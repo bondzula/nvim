@@ -7,8 +7,9 @@ return {
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "hrsh7th/cmp-path" },
+      { "lukas-reineke/cmp-under-comparator" },
 
-      -- { "saadparwaiz1/cmp_luasnip" },
+      { "saadparwaiz1/cmp_luasnip" },
       { "onsails/lspkind-nvim" },
       { "petertriho/cmp-git" },
     },
@@ -37,7 +38,7 @@ return {
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_next_item()
+              cmp.confirm({ select = true })
             elseif require("copilot.suggestion").is_visible() then
               require("copilot.suggestion").accept()
             elseif luasnip.expandable() then
@@ -52,9 +53,7 @@ return {
             "s",
           }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
+            if luasnip.jumpable(-1) then
               luasnip.jump(-1)
             else
               fallback()
@@ -68,16 +67,26 @@ return {
           format = require("lspkind").cmp_format(),
         },
         sources = {
+          { name = "luasnip" },
           {
             name = "nvim_lsp",
-            entry_filter = function(entry, ctx)
+            entry_filter = function(entry)
               return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
             end,
           },
           { name = "nvim_lsp_signature_help" },
-          -- { name = "luasnip" },
           { name = "path" },
           { name = "git" },
+        },
+        sorting = {
+          comparators = {
+            cmp.config.compare.offset,
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            require("cmp-under-comparator").under,
+            cmp.config.compare.kind,
+          },
         },
         view = {
           entries = "native",
