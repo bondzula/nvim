@@ -109,7 +109,7 @@ return {
         tailwindcss = {},
         terraformls = {},
         volar = {},
-        yamls = {},
+        yamlls = {},
       },
     },
     config = function(_, opts)
