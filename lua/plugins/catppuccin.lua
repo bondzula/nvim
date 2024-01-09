@@ -37,6 +37,7 @@ return {
             information = { "underline" },
           },
         },
+        fidget = true,
         neogit = true,
         neotree = false,
         noice = false,
