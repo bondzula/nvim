@@ -100,6 +100,27 @@ return {
             },
           },
         },
+        ltex = {
+          settings = {
+            ltex = {
+              language = "en-US",
+            },
+            filetypes = {
+              "bib",
+              "gitcommit",
+              "markdown",
+              "org",
+              "plaintex",
+              "rst",
+              "rnoweb",
+              "tex",
+              "pandoc",
+              "quarto",
+              "rmd",
+              "NeogitCommitMessage",
+            },
+          },
+        },
         marksman = {},
         nil_ls = {},
         pylsp = {},
@@ -144,25 +165,7 @@ return {
     opts = {
       on_attach = on_attach,
       settings = {
-        -- spawn additional tsserver instance to calculate diagnostics on it
-        separate_diagnostic_server = true,
-        -- "change"|"insert_leave" determine when the client asks the server about diagnostic
-        publish_diagnostic_on = "insert_leave",
-        -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
-        -- (see 💅 `styled-components` support section)
-        tsserver_plugins = {},
-        -- described below
-        tsserver_format_options = {
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-          includeInlayFunctionParameterTypeHints = true,
-          includeInlayVariableTypeHints = true,
-          includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-          includeInlayPropertyDeclarationTypeHints = true,
-          includeInlayFunctionLikeReturnTypeHints = true,
-          includeInlayEnumMemberValueHints = true,
-        },
-        tsserver_file_preferences = {},
+        expose_as_code_action = "all",
       },
     },
   },
