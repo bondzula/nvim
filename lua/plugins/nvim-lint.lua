@@ -77,12 +77,9 @@ return {
       require("lint").linters_by_ft = {
         dockerfile = { "hadolint" },
         dotenv = { "dotenv_linter" },
-        gitcommit = { "commitlint" },
-        go = { "cspell" },
         javascript = { "eslint_d" },
         javascriptreact = { "eslint_d" },
         json = { "jsonlint" },
-        markdown = { "ltrs" },
         nix = { "statix", "deadnix" },
         php = { "phpstan" },
         tsx = { "eslint_d" },
