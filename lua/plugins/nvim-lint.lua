@@ -41,39 +41,6 @@ return {
         end,
       }
 
-      require("lint").linters.ltrs = {
-        name = "ltrs",
-        cmd = "ltrs",
-        stdin = true,
-        args = { "check", "-m", "-r", get_file_name },
-        ignore_exitcode = true,
-        parser = function(output, bufnr)
-          if output == "" then
-            return {}
-          end
-          local decoded = vim.json.decode(output)
-          if decoded == nil then
-            return {}
-          end
-          local diagnostics = {}
-          vim.notify(output)
-
-          for _, item in ipairs(decoded.matches) do
-            table.insert(diagnostics, {
-              lnum = item.moreContext.line_number - 1,
-              end_lnum = item.moreContext.line_number - 1,
-              col = item.moreContext.line_offset,
-              end_col = item.moreContext.line_offset + item.context.length,
-              severity = vim.diagnostic.severity.WARN,
-              source = "ltrs",
-              message = item.rule.description,
-            })
-          end
-
-          return diagnostics
-        end,
-      }
-
       require("lint").linters_by_ft = {
         dockerfile = { "hadolint" },
         dotenv = { "dotenv_linter" },
