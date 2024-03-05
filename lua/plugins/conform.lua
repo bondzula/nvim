@@ -26,7 +26,7 @@ return {
         python = { "black", "ruff" },
         go = { "goimports-reviser", "gofumpt", "golines" },
         terraform = { "terraform_fmt" },
-        php = { "php_cs_fixer" },
+        php = { "pint" },
         shell = { "shfmt" },
         nix = { "nixfmt" },
         -- Use the "_" filetype to run formatters on filetypes that don't
