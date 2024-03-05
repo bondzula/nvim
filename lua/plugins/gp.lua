@@ -54,7 +54,7 @@ return {
         a = {
           name = "+gp",
           g = { ":<C-u>'<,'>GpChatToggle popup<cr>", "Toggle Chat" },
-          i = { ":<C-u>'<,'>GpChatImplement<cr>", "Implement" },
+          i = { ":<C-u>'<,'>GpImplement<cr>", "Implement" },
           u = { ":<C-u>'<,'>GpUnitTests<cr>", "Write unit test" },
           e = { ":<C-u>'<,'>GpExplain<cr>", "Explain" },
         },
