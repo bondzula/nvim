@@ -18,9 +18,6 @@ return {
           scrollD = "<C-d>",
         },
       },
-      provider_selector = function()
-        return { "treesitter", "indent" }
-      end,
     },
     config = function(_, opts)
       require("ufo").setup(opts)
