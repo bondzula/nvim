@@ -103,3 +103,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Setup highlight symbol",
   callback = highlight_symbol,
 })
+
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+  callback = function(ev)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+    local bufferNum = ev.buf
+
+    vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufferNum, desc = "Signature Help" })
+  end,
+})
