@@ -99,10 +99,10 @@ local function highlight_symbol(event)
   })
 end
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  desc = "Setup highlight symbol",
-  callback = highlight_symbol,
-})
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--   desc = "Setup highlight symbol",
+--   callback = highlight_symbol,
+-- })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", {}),
