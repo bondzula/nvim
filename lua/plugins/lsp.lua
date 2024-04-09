@@ -1,16 +1,14 @@
-local on_attach = function(_, bufferNum)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufferNum, desc = "Go to Definition" })
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufferNum, desc = "Go to Declaration" })
-  vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, { buffer = bufferNum, desc = "Go to Type Definition" })
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufferNum, desc = "Go to Implementation" })
-end
-
 local capabilities = vim.tbl_deep_extend(
   "force",
   {},
   vim.lsp.protocol.make_client_capabilities(),
   require("cmp_nvim_lsp").default_capabilities()
 )
+
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 
 return {
   {
@@ -37,101 +35,7 @@ return {
         Info = "",
       },
 
-      servers = {
-        bashls = {},
-        cssls = {},
-        dockerls = {},
-        gopls = {
-          settings = {
-            gopls = {
-              codelenses = {
-                gc_details = false,
-                generate = true,
-                regenerate_cgo = true,
-                run_govulncheck = true,
-                test = true,
-                tidy = true,
-                upgrade_dependency = true,
-                vendor = true,
-              },
-              hints = {
-                assignVariableTypes = true,
-                compositeLiteralFields = true,
-                compositeLiteralTypes = true,
-                constantValues = true,
-                functionTypeParameters = true,
-                parameterNames = true,
-                rangeVariableTypes = true,
-              },
-              analyses = {
-                fieldalignment = true,
-                nilness = true,
-                unusedparams = true,
-                unusedwrite = true,
-                useany = true,
-              },
-              usePlaceholders = true,
-              completeUnimported = true,
-              staticcheck = true,
-              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-              semanticTokens = true,
-            },
-          },
-        },
-        html = {},
-        intelephense = {},
-        jsonls = {},
-        lua_ls = {
-          settings = {
-            Lua = {
-              runtime = {
-                version = "LuaJIT",
-              },
-              workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = {
-                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                  [vim.fn.stdpath("config") .. "/lua"] = true,
-                },
-              },
-              telemetry = {
-                enable = false,
-              },
-            },
-          },
-        },
-        ltex = {
-          settings = {
-            ltex = {
-              language = "en-US",
-            },
-            filetypes = {
-              "bib",
-              "gitcommit",
-              "markdown",
-              "org",
-              "plaintex",
-              "rst",
-              "rnoweb",
-              "tex",
-              "pandoc",
-              "quarto",
-              "rmd",
-              "NeogitCommitMessage",
-            },
-          },
-        },
-        marksman = {},
-        nil_ls = {},
-        pylsp = {},
-        rust_analyzer = {},
-        sqls = {},
-        svelte = {},
-        tailwindcss = {},
-        terraformls = {},
-        volar = {},
-        yamlls = {},
-      },
+      servers = {},
     },
     config = function(_, opts)
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
@@ -145,7 +49,6 @@ return {
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
           capabilities = vim.deepcopy(capabilities),
-          on_attach = on_attach,
         }, opts.servers[server] or {})
 
         require("lspconfig")[server].setup(server_opts)
@@ -163,7 +66,6 @@ return {
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     event = { "BufReadPost", "BufNewFile" },
     opts = {
-      on_attach = on_attach,
       settings = {
         expose_as_code_action = "all",
       },

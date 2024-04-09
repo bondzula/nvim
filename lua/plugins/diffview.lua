@@ -8,6 +8,11 @@ return {
     },
     opts = {
       view = {
+        win_config = {
+          type = "split",
+          position = "right",
+          width = 40,
+        },
         -- For more info, see ':h diffview-config-view.x.layout'.
         default = {
           layout = "diff2_horizontal",
