@@ -6,8 +6,8 @@ local capabilities = vim.tbl_deep_extend(
 )
 
 capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
 }
 
 return {
@@ -35,7 +35,9 @@ return {
         Info = "",
       },
 
-      servers = {},
+      servers = {
+        yamlls = {},
+      },
     },
     config = function(_, opts)
       vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
