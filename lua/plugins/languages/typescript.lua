@@ -1,8 +1,15 @@
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, options)
+      vim.list_extend(options.ensure_installed, { "typescript", "vue" })
+    end,
+  },
+
+  {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "tsserver", "vtsls" })
+      vim.list_extend(options.ensure_installed, { "tsserver", "vtsls", "volar" })
     end,
   },
 
@@ -16,10 +23,28 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, options)
+      local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
+      local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+
       -- make sure mason installs the server
       local servers = {
+        volar = {
+          init_options = {
+            vue = {
+              hybridMode = false,
+            },
+          },
+        },
         tsserver = {
-          enabled = false,
+          init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = volar_path,
+                languages = { "vue" },
+              },
+            },
+          },
         },
         vtsls = {
           -- explicitly add default filetypes, so that we can extend
@@ -74,6 +99,7 @@ return {
         tsx = { "eslint_d" },
         typescript = { "eslint_d" },
         typescriptreact = { "eslint_d" },
+        vue = { "eslint_d" },
       }
 
       options.linters_by_ft = vim.tbl_deep_extend("force", options.linters_by_ft, linters_by_ft)
@@ -88,6 +114,7 @@ return {
         javascriptreact = { "prettierd" },
         typescript = { "prettierd" },
         typescriptreact = { "prettierd" },
+        vue = { "prettierd" },
       }
 
       options.formatters_by_ft = vim.tbl_deep_extend("force", options.formatters_by_ft, formatters_by_ft)
