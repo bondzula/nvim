@@ -3,7 +3,7 @@ return {
     "stevearc/conform.nvim",
     event = "VeryLazy",
     keys = {
-      { "<leader>cf", '<cmd>lua require("conform").format()<cr>' },
+      { "<leader>cf", '<cmd>lua require("conform").format()<cr>', desc = "[C]ode [F]ormat" },
     },
     opts = {
       formatters = {},
