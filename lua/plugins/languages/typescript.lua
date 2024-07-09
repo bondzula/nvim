@@ -9,7 +9,7 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "eslint_d", "prettierdd" })
+      vim.list_extend(options.ensure_installed, { "eslint_d", "prettierd" })
     end,
   },
 
