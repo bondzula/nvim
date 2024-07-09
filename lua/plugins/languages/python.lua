@@ -2,19 +2,21 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "ninja", "rst" })
+      vim.list_extend(options.ensure_installed, { "ninja", "rst", "python" })
     end,
   },
 
   {
-    "neovim/nvim-lspconfig",
+    "williamboman/mason-lspconfig.nvim",
     opts = function(_, options)
-      local servers = {
-        pyright = {},
-        ruff = {},
-      }
+      vim.list_extend(options.ensure_installed, { "pyright" })
+    end,
+  },
 
-      options.servers = vim.tbl_deep_extend("force", options.servers, servers)
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    opts = function(_, options)
+      vim.list_extend(options.ensure_installed, { "ruff", "black" })
     end,
   },
 
