@@ -6,7 +6,9 @@ return {
       "kevinhwang91/promise-async",
     },
     opts = {
-      close_fold_kinds = { "imports", "comment" },
+      close_fold_kinds_for_ft = {
+        default = { "imports", "comment" },
+      },
       preview = {
         win_config = {
           border = { "", "─", "", "", "", "─", "", "" },
