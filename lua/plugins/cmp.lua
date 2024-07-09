@@ -11,7 +11,6 @@ return {
 
       { "saadparwaiz1/cmp_luasnip" },
       { "onsails/lspkind-nvim" },
-      { "petertriho/cmp-git" },
     },
     opts = function()
       local cmp = require("cmp")
@@ -76,7 +75,6 @@ return {
           },
           { name = "nvim_lsp_signature_help" },
           { name = "path" },
-          { name = "git" },
         },
         sorting = {
           comparators = {
@@ -97,17 +95,5 @@ return {
         },
       }
     end,
-  },
-
-  -- GitHub completion
-  {
-    "petertriho/cmp-git",
-    ft = { "gitcommit", "octo", "NeogitCommitMessage" },
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-    },
-    opts = {
-      filetypes = { "gitcommit", "octo", "NeogitCommitMessage" },
-    },
   },
 }
