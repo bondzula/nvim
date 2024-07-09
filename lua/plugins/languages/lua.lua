@@ -2,7 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "lua" })
+      vim.list_extend(options.ensure_installed, { "lua", "luadoc" })
     end,
   },
 
@@ -16,10 +16,9 @@ return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "stylua" })
+      vim.list_extend(options.ensure_installed, { "stylua", "luacheck" })
     end,
   },
-
   {
     "neovim/nvim-lspconfig",
     opts = function(_, options)
@@ -56,16 +55,16 @@ return {
     end,
   },
 
-  -- {
-  --   "mfussenegger/nvim-lint",
-  --   opts = function(_, options)
-  --     local linters_by_ft = {
-  --       php = { "phpstan" },
-  --     }
-  --
-  --     options.linters_by_ft = vim.tbl_deep_extend("force", options.linters_by_ft, linters_by_ft)
-  --   end,
-  -- },
+  {
+    "mfussenegger/nvim-lint",
+    opts = function(_, options)
+      local linters_by_ft = {
+        lua = { "luacheck" },
+      }
+
+      options.linters_by_ft = vim.tbl_deep_extend("force", options.linters_by_ft, linters_by_ft)
+    end,
+  },
 
   {
     "stevearc/conform.nvim",
