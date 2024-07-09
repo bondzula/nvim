@@ -14,13 +14,6 @@ return {
   },
 
   {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "statix", "deadnix" })
-    end,
-  },
-
-  {
     "mfussenegger/nvim-lint",
     opts = function(_, options)
       local linters_by_ft = {
