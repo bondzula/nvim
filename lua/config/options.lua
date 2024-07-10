@@ -57,5 +57,11 @@ opt.writebackup = false
 opt.splitkeep = "screen"
 opt.shortmess:append({ C = true })
 
+-- Avoid issues with new terraform files
+vim.filetype.add({
+  extension = {
+    tf = "terraform",
+  },
+})
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
