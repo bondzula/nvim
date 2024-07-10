@@ -55,6 +55,9 @@ return {
         --  For example, in C this would take you to the header.
         map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
+        -- Show the signature of the function call under your cursor.
+        vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = event.buf, desc = "LSP: Signature Help" })
+
         -- The following two autocommands are used to highlight references of the
         -- word under your cursor when your cursor rests there for a little while.
         --    See `:help CursorHold` for information about when this is executed
