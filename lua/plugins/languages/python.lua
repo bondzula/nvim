@@ -7,16 +7,10 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "pyright" })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "ruff", "black" })
+      vim.list_extend(options.ensure_lsp_installed, { "pyright" })
+      vim.list_extend(options.ensure_tools_installed, { "ruff", "black" })
     end,
   },
 

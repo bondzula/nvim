@@ -1,10 +1,27 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    lazy = false,
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-    build = ":MasonUpdate",
-    opts = {
+  "williamboman/mason.nvim",
+  cmd = "Mason",
+  keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+  build = ":MasonUpdate",
+  dependencies = {
+    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+  opts = {
+    ensure_lsp_installed = {},
+    ensure_tools_installed = {},
+  },
+  config = function(_, opts)
+    -- import mason
+    local mason = require("mason")
+
+    -- import mason-lspconfig
+    local mason_lspconfig = require("mason-lspconfig")
+
+    local mason_tool_installer = require("mason-tool-installer")
+
+    -- enable mason and configure icons
+    mason.setup({
       ui = {
         icons = {
           package_installed = "✓",
@@ -12,27 +29,15 @@ return {
           package_uninstalled = "✗",
         },
       },
-    },
-  },
+    })
 
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-    },
-    opts = {
+    mason_lspconfig.setup({
       automatic_installation = true,
-      ensure_installed = {},
-    },
-  },
+      ensure_installed = opts.ensure_lsp_installed,
+    })
 
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    dependencies = {
-      "williamboman/mason.nvim",
-    },
-    opts = {
-      ensure_installed = {},
-    },
-  },
+    mason_tool_installer.setup({
+      ensure_installed = opts.ensure_tools_installed,
+    })
+  end,
 }

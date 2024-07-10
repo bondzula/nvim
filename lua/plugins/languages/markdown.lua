@@ -7,16 +7,10 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "marksman", "ltex" })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "markdownlint-cli2", "markdown-toc" })
+      vim.list_extend(options.ensure_lsp_installed, { "marksman", "ltex" })
+      vim.list_extend(options.ensure_tools_installed, { "markdownlint-cli2", "markdown-toc" })
     end,
   },
 

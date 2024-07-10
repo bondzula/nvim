@@ -7,16 +7,10 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "intelephense" })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "phpstan", "pint" })
+      vim.list_extend(options.ensure_lsp_installed, { "intelephense" })
+      vim.list_extend(options.ensure_tools_installed, { "phpstan", "pint" })
     end,
   },
 

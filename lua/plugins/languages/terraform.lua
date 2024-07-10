@@ -7,16 +7,10 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "terraformls" })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "tflint" })
+      vim.list_extend(options.ensure_lsp_installed, { "terraformls" })
+      vim.list_extend(options.ensure_tools_installed, { "tflint" })
     end,
   },
 

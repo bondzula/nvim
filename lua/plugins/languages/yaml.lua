@@ -7,9 +7,9 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "yamlls" })
+      vim.list_extend(options.ensure_lsp_installed, { "yamlls" })
     end,
   },
 

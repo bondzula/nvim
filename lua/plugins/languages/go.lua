@@ -7,16 +7,10 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "gopls" })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "goimports-reviser", "gofumpt", "golines" })
+      vim.list_extend(options.ensure_lsp_installed, { "gopls" })
+      vim.list_extend(options.ensure_tools_installed, { "goimports-reviser", "gofumpt", "golines" })
     end,
   },
 

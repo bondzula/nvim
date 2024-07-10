@@ -7,16 +7,10 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "dockerls", "docker_compose_language_service" })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "hadolint" })
+      vim.list_extend(options.ensure_lsp_installed, { "dockerls", "docker_compose_language_service" })
+      vim.list_extend(options.ensure_tools_installed, { "hadolint" })
     end,
   },
 

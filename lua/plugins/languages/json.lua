@@ -7,16 +7,10 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "jsonls" })
-    end,
-  },
-
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "jsonlint" })
+      vim.list_extend(options.ensure_lsp_installed, { "jsonls" })
+      vim.list_extend(options.ensure_tools_installed, { "jsonlint" })
     end,
   },
 

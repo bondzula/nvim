@@ -7,18 +7,13 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
+    "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "lua_ls" })
+      vim.list_extend(options.ensure_lsp_installed, { "lua_ls" })
+      vim.list_extend(options.ensure_tools_installed, { "stylua", "luacheck" })
     end,
   },
 
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    opts = function(_, options)
-      vim.list_extend(options.ensure_installed, { "stylua", "luacheck" })
-    end,
-  },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, options)
