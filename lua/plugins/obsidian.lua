@@ -1,7 +1,7 @@
 return {
   "epwalsh/obsidian.nvim",
   version = "*",
-  lazy = false,
+  cmd = { "ObsidianDailies", "ObsidianNew", "ObsidianQuickSwitch", "ObsidianToday" },
   ft = "markdown",
   dependencies = {
     "nvim-lua/plenary.nvim",
