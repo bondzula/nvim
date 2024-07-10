@@ -3,46 +3,27 @@ vim.g.telescope_finder_command = { "rg", "--files", "--hidden", "--ignore" }
 return {
   {
     "nvim-telescope/telescope.nvim",
-    lazy = false,
-    version = false,
+    cmd = "Telescope",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      { "ThePrimeagen/git-worktree.nvim" },
     },
     keys = {
-      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Diagnostics" },
-      { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+      { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "File Picker" },
+      { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "File Picker" },
+      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+      { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffer Picker" },
+      { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Buffer Picker" },
       -- search
-      { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
       { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-      { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Diagnostics" },
+      { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
       { "<leader>sm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
       { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-      -- LSP
-      { "<leader>cr", "<cmd>Telescope lsp_references<cr>", desc = "Lsp References" },
-      { "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Lsp Document Symbols" },
-      { "<leader>cs", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Lsp Workspace Symbols" },
-
-      {
-        "<leader>gw",
-        function()
-          require("telescope").extensions.git_worktree.git_worktrees()
-        end,
-        desc = "Switch git worktree",
-      },
-      {
-        "<leader>gW",
-        function()
-          require("telescope").extensions.git_worktree.create_git_worktree()
-        end,
-        desc = "Create git worktree",
-      },
     },
     opts = function()
       local actions = require("telescope.actions")
@@ -94,6 +75,27 @@ return {
 
       local open_with_trouble = function(...)
         return require("trouble.sources.telescope").open(...)
+      end
+
+      local no_preview = function(custom_opts)
+        custom_opts = custom_opts or {}
+
+        local default_opts = {
+          find_command = vim.g.telescope_finder_command,
+          borderchars = {
+            { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+            prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+            results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+            preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          },
+          width = 0.6,
+          previewer = false,
+          layout_config = {
+            prompt_position = "top",
+          },
+        }
+
+        return require("telescope.themes").get_dropdown(vim.tbl_deep_extend("force", default_opts, custom_opts))
       end
 
       return {
@@ -153,23 +155,22 @@ return {
           },
         },
         pickers = {
-          buffers = {
+          commands = {
+            prompt_prefix = " ",
+          },
+          git_files = no_preview({
+            prompt_prefix = " ",
+            show_untracked = true,
+          }),
+          find_files = no_preview(),
+          oldfiles = no_preview(),
+          buffers = no_preview({
             mappings = {
               i = {
                 ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
               },
             },
-          },
-          commands = {
-            prompt_prefix = " ",
-          },
-          git_files = {
-            prompt_prefix = " ",
-            show_untracked = true,
-          },
-          -- find_files = {
-          --   find_command = vim.g.telescope_finder_command,
-          -- },
+          }),
         },
       }
     end,
@@ -178,36 +179,6 @@ return {
 
       telescope.setup(opts)
       telescope.load_extension("fzf")
-      telescope.load_extension("git_worktree")
-
-      local no_preview = function()
-        return require("telescope.themes").get_dropdown({
-          find_command = vim.g.telescope_finder_command,
-          borderchars = {
-            { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-            prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-            results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-            preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          },
-          width = 0.6,
-          previewer = false,
-          layout_config = {
-            prompt_position = "top",
-          },
-        })
-      end
-
-      vim.keymap.set("n", "<leader><leader>", function()
-        require("telescope.builtin").find_files(no_preview())
-      end, {})
-
-      vim.keymap.set("n", "<C-p>", function()
-        require("telescope.builtin").find_files(no_preview())
-      end, {})
-
-      vim.keymap.set("n", "<leader>,", function()
-        require("telescope.builtin").buffers(no_preview())
-      end, {})
     end,
   },
 }
