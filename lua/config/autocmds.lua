@@ -44,30 +44,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
   end,
 })
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
-  end,
-})
-
--- Disable diagnostics in insert and select mode
--- This is already default behavior, but it required action before
--- it activates, this makes it instant.
-vim.api.nvim_create_autocmd("ModeChanged", {
-  pattern = { "n:i", "v:s" },
-  desc = "Disable diagnostics in insert and select mode",
-  callback = function(e)
-    vim.diagnostic.disable(false, { bufnr = e.buf })
-  end,
-})
-
-vim.api.nvim_create_autocmd("ModeChanged", {
-  pattern = "i:n",
-  desc = "Enable diagnostics when leaving insert mode",
-  callback = function(e)
-    vim.diagnostic.enable(e.buf)
-  end,
-})
