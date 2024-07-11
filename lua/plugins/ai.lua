@@ -1,12 +1,55 @@
 return {
+  -- {
+  --   "supermaven-inc/supermaven-nvim",
+  --   config = function()
+  --     require("supermaven-nvim").setup({
+  --       keymaps = {
+  --         accept_suggestion = "<M-.>",
+  --         clear_suggestion = "<C-]>",
+  --         accept_word = "<C-j>",
+  --       },
+  --       ignore_filetypes = {
+  --         ["copilot-chat"] = true,
+  --       },
+  --     })
+  --   end,
+  -- },
+
+  {
+    "zbirenbaum/copilot.lua",
+    build = ":Copilot auth",
+    event = "InsertEnter",
+    opts = {
+      keymap = {
+        accept = "<M-.>",
+      },
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+      },
+      panel = { enabled = false },
+    },
+  },
+
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "canary",
+    cmd = { "CopilotChatOpen", "CopilotChatToggle" },
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    opts = {
+      show_help = false,
+    },
+  },
+
   {
     "robitx/gp.nvim",
     config = function()
       require("gp").setup({
         openai_api_key = "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",
         model = "gpt-4-1106-preview",
-        -- openai_api_key = "f37fc83c90b24ada95268717280e2420",
-        -- openai_api_endpoint = "https://dztest.openai.azure.com/openai/deployments/gpt-4/chat/completions?api-version=2023-12-01-preview",
         hooks = {
           BufferChatNew = function(gp, _)
             -- call GpChatNew command in range mode on whole buffer
@@ -16,8 +59,8 @@ return {
           -- example of adding command which writes unit tests for the selected code
           UnitTests = function(gp, params)
             local template = "I have the following code from {{filename}}:\n\n"
-            .. "```{{filetype}}\n{{selection}}\n```\n\n"
-            .. "Please respond by writing table driven unit tests for the code above."
+              .. "```{{filetype}}\n{{selection}}\n```\n\n"
+              .. "Please respond by writing table driven unit tests for the code above."
             local agent = gp.get_command_agent()
             gp.Prompt(params, gp.Target.enew, nil, agent.model, template, agent.system_prompt)
           end,
@@ -25,12 +68,12 @@ return {
           -- example of adding command which explains the selected code
           Explain = function(gp, params)
             local template = "I have the following code from {{filename}}:\n\n"
-            .. "```{{filetype}}\n{{selection}}\n```\n\n"
-            .. "Please respond by explaining the code above."
+              .. "```{{filetype}}\n{{selection}}\n```\n\n"
+              .. "Please respond by explaining the code above."
             local agent = gp.get_chat_agent()
             gp.Prompt(params, gp.Target.popup, nil, agent.model, template, agent.system_prompt)
           end,
-        }
+        },
       })
 
       -- require which-key plugin, and if it loads, set the keymapings for gp.nvim
