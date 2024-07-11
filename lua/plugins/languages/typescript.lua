@@ -9,7 +9,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = function(_, options)
-      vim.list_extend(options.ensure_lsp_installed, { "tsserver", "vtsls", "volar" })
+      vim.list_extend(options.ensure_lsp_installed, { "vtsls", "volar" })
       vim.list_extend(options.ensure_tools_installed, { "eslint_d", "prettierd" })
     end,
   },
@@ -29,17 +29,6 @@ return {
             },
           },
         },
-        tsserver = {
-          init_options = {
-            plugins = {
-              {
-                name = "@vue/typescript-plugin",
-                location = volar_path,
-                languages = { "vue" },
-              },
-            },
-          },
-        },
         vtsls = {
           -- explicitly add default filetypes, so that we can extend
           -- them in related extras
@@ -50,6 +39,7 @@ return {
             "typescript",
             "typescriptreact",
             "typescript.tsx",
+            "vue",
           },
           settings = {
             complete_function_calls = true,
@@ -59,6 +49,17 @@ return {
               experimental = {
                 completion = {
                   enableServerSideFuzzyMatch = true,
+                },
+              },
+              tsserver = {
+                globalPlugins = {
+                  {
+                    name = "@vue/typescript-plugin",
+                    location = volar_path,
+                    languages = { "vue" },
+                    configNamespace = "typescript",
+                    enableForWorkspaceTypeScriptVersions = true,
+                  },
                 },
               },
             },
