@@ -44,12 +44,8 @@ return {
           goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
         },
       },
-      autotag = {
-        enable = true,
-      },
     },
     config = function(_, opts)
-      vim.print("Setting up nvim-treesitter")
       require("nvim-treesitter.configs").setup(opts)
     end,
   },
