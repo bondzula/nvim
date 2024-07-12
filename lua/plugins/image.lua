@@ -1,7 +1,7 @@
 return {
   {
     "3rd/image.nvim",
-    lazy = false,
+    ft = { "markdown" },
     opts = {
       backend = "kitty",
       integrations = {

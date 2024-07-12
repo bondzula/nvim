@@ -1,15 +1,7 @@
 return {
-  -- {
-  --   "echasnovski/mini.ai",
-  --   version = false,
-  --   config = function()
-  --     require("mini.ai").setup({})
-  --   end,
-  -- },
-
   {
     "echasnovski/mini.ai",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     opts = function()
       local ai = require("mini.ai")
 

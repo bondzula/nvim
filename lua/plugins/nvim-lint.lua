@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-lint",
+    event = "BufReadPost",
     opts = {
       linters_by_ft = {},
     },

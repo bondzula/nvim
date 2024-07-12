@@ -52,7 +52,7 @@ return {
 
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    event = "VeryLazy",
+    event = { "BufReadPre", "BufNewFile" },
     enabled = true,
     config = function()
       -- When in diff mode, we want to use the default
@@ -80,6 +80,7 @@ return {
 
   {
     "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },

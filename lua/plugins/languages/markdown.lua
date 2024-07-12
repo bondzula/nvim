@@ -60,6 +60,7 @@ return {
 
   {
     "preservim/vim-pencil",
+    ft = { "markdown", "mkd", "text" },
     init = function()
       vim.g["pencil#wrapModeDefault"] = "soft"
       vim.g["pencil#conceallevel"] = 2
