@@ -1,7 +1,7 @@
 return {
   {
     "kevinhwang91/nvim-ufo",
-    event = "BufReadPost",
+    event = "VeryLazy",
     dependencies = {
       "kevinhwang91/promise-async",
     },
@@ -31,6 +31,16 @@ return {
       vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.opt.foldlevelstart = 99
       vim.opt.foldenable = true
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "NeogitStatus", "neo-tree" },
+        callback = function()
+          print("Detaching UFO for " .. vim.bo.filetype)
+          require("ufo").detach()
+          vim.opt_local.foldenable = false
+          vim.opt_local.foldcolumn = "0"
+        end,
+      })
     end,
   },
 }
