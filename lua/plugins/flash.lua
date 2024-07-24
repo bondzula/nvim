@@ -41,15 +41,16 @@ return {
       local wc_loaded, wc = pcall(require, "which-key")
 
       if wc_loaded then
-        wc.register({
-          s = {
-            name = "Search",
-            f = { search_forward, "Search Forwards" },
-            b = { search_backward, "Search Backwards" },
-            g = { search_globaly, "Search Globaly" },
-            w = { search_word_under_cursor, "Search Word Under Cursor" },
+        wc.add({
+          {
+            mode = { "n" },
+            { "<leader>s", group = "[S]earch" },
+            { "<leader>sf", search_forward, desc = "Search Forwards" },
+            { "<leader>sb", search_backward, desc = "Search Backwards" },
+            { "<leader>sg", search_globaly, desc = "Search Globaly" },
+            { "<leader>sw", search_word_under_cursor, desc = "Search Word Under Cursor" },
           },
-        }, { mode = "n", prefix = "<leader>" })
+        })
       end
     end,
   },
