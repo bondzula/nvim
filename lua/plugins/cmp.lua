@@ -15,7 +15,6 @@ return {
     opts = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      local suggestion = require("supermaven-nvim.completion_preview")
 
       return {
         snippet = {
@@ -39,8 +38,6 @@ return {
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.confirm({ select = true })
-            elseif suggestion.has_suggestion() then
-              suggestion.on_accept_suggestion()
             elseif luasnip.expandable() then
               luasnip.expand()
             elseif luasnip.expand_or_jumpable() then
