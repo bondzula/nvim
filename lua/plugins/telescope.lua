@@ -10,7 +10,7 @@ return {
     },
     keys = {
       { "<C-p>", "<cmd>Telescope find_files<cr>", desc = "File Picker" },
-      { "<leader><leader>", "<cmd>Telescope find_files<cr>", desc = "File Picker" },
+      { "<leader><leader>", "<cmd>Telescope resume<cr>", desc = "File Picker" },
       { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
       { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Buffer Picker" },
       { "<leader>,", "<cmd>Telescope buffers<cr>", desc = "Buffer Picker" },
