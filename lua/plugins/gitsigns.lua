@@ -20,8 +20,8 @@ return {
         end
 
         -- Navigation
-        map("n", "]h", gs.next_hunk, "Goto next [h]unk")
-        map("n", "[h", gs.prev_hunk, "Goto previous [h]unk")
+        map({ "n", "v" }, "]h", gs.next_hunk, "Goto next [h]unk")
+        map({ "n", "v" }, "[h", gs.prev_hunk, "Goto previous [h]unk")
 
         -- Staging and resetting
         map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<CR>", "[G]it [S]tage hunk")
