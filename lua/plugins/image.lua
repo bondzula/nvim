@@ -11,6 +11,15 @@ return {
           download_remote_images = true,
           only_render_image_at_cursor = false,
           filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+          resolve_image_path = function(document_path, image_path, fallback)
+            local vault_dir = "/Users/stefan/Documents/Obsidian Notes"
+            -- Format path for Obsidian vault
+            if document_path:find(vault_dir, 1, true) then
+              return vault_dir .. "/99 - Meta/02 - Attachments/" .. image_path
+            end
+            -- fallback to default
+            return fallback(document_path, image_path)
+          end
         },
         neorg = {
           enabled = true,
