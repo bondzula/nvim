@@ -6,3 +6,4 @@ require("config.diagnostics")
 
 -- Plugins config
 require("config.lazy")
+require("snippets.markdown")
