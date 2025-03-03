@@ -2,7 +2,8 @@ return {
   {
     "saghen/blink.cmp",
     -- optional: provides snippets for the snippet source
-    dependencies = "rafamadriz/friendly-snippets",
+    -- dependencies = "rafamadriz/friendly-snippets",
+    dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
     version = "v0.*",
 
     ---@module 'blink.cmp'
@@ -25,12 +26,15 @@ return {
         nerd_font_variant = "mono",
       },
 
+      snippets = { preset = "luasnip" },
+
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { "lsp", "path", "snippets", "buffer" },
+        -- default = { "lsp", "path", "snippets", "buffer" },
         -- optionally disable cmdline completions
         -- cmdline = {},
+        default = { "lsp", "path", "snippets", "buffer" },
       },
 
       -- experimental signature help support
