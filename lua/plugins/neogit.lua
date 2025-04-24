@@ -20,7 +20,7 @@ return {
     disable_hint = true,
   },
   keys = {
-    { "<leader>gc", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "[G]it [c]ommit" },
-    { "<leader>gg", "<cmd>lua require('neogit').open()<CR>", desc = "Neo[g]it" },
+    -- { "<leader>gc", "<cmd>lua require('neogit').open({'commit'})<CR>", desc = "[G]it [c]ommit" },
+    -- { "<leader>gg", "<cmd>lua require('neogit').open()<CR>", desc = "Neo[g]it" },
   },
 }

@@ -20,6 +20,13 @@ return {
           scrollD = "<C-d>",
         },
       },
+      provider_selector = function(_, ft, _)
+        -- local lspWithOutFolding = { "markdown", "zsh", "css", "html", "python", "json", "vue" }
+        -- if vim.tbl_contains(lspWithOutFolding, ft) then
+        --   return { "treesitter", "indent" }
+        -- end
+        return { "lsp", "indent" }
+      end,
     },
     config = function(_, opts)
       require("ufo").setup(opts)

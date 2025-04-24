@@ -56,6 +56,7 @@ return {
         octo = true,
         overseer = true,
         semantic_tokens = true,
+        snacks = true,
         telescope = {
           enabled = true,
           -- style = "nvchad"

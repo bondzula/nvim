@@ -17,18 +17,13 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, options)
-      local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
-      local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
+      local mason_registry = require("mason-registry")
+      local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+        .. "/node_modules/@vue/language-server"
 
       -- make sure mason installs the server
       local servers = {
-        volar = {
-          init_options = {
-            vue = {
-              hybridMode = false,
-            },
-          },
-        },
+        volar = {},
         vtsls = {
           -- explicitly add default filetypes, so that we can extend
           -- them in related extras
@@ -55,7 +50,7 @@ return {
                 globalPlugins = {
                   {
                     name = "@vue/typescript-plugin",
-                    location = volar_path,
+                    location = vue_language_server_path,
                     languages = { "vue" },
                     configNamespace = "typescript",
                     enableForWorkspaceTypeScriptVersions = true,

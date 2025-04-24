@@ -77,9 +77,9 @@ return {
         end
 
         -- Enable inlay hints for the current buffer
-        if client and client.server_capabilities.inlayHintProvider then
-          vim.lsp.inlay_hint.enable(true)
-        end
+        -- if client and client.server_capabilities.inlayHintProvider then
+        --   vim.lsp.inlay_hint.enable(true)
+        -- end
 
         -- Enable code lense for the current buffer
         -- if client and client.server_capabilities.codeLensProvider then

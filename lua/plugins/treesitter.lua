@@ -19,11 +19,18 @@ return {
       ensure_installed = {
         "bash",
         "comment",
+        "css",
+        "html",
+        "javascript",
         "kdl",
+        "latex",
         "make",
         "regex",
+        "scss",
         "sql",
         "toml",
+        "tsx",
+        "vue",
         "xml",
       },
       incremental_selection = {
