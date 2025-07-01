@@ -2,8 +2,9 @@
 require("config.options")
 require("config.autocmds")
 require("config.keymaps")
-require("config.diagnostics")
 
--- Plugins config
-require("config.lazy")
+-- Core setup
+require("core.lazy")
+require("core.lsp")
+
 require("snippets.markdown")

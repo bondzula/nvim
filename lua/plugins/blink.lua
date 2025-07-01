@@ -4,10 +4,7 @@ return {
     -- optional: provides snippets for the snippet source
     -- dependencies = "rafamadriz/friendly-snippets",
     dependencies = { "L3MON4D3/LuaSnip", version = "v2.*" },
-    version = "v0.*",
-
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
+    version = "1.*",
     opts = {
       -- 'default' for mappings similar to built-in completion
       -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
@@ -17,10 +14,6 @@ return {
       keymap = { preset = "default" },
 
       appearance = {
-        -- Sets the fallback highlight groups to nvim-cmp's highlight groups
-        -- Useful for when your theme doesn't support blink.cmp
-        -- will be removed in a future release
-        use_nvim_cmp_as_default = true,
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = "mono",
@@ -34,7 +27,7 @@ return {
         -- default = { "lsp", "path", "snippets", "buffer" },
         -- optionally disable cmdline completions
         -- cmdline = {},
-        default = { "lsp", "path", "snippets", "buffer" },
+        default = { "lsp", "snippets", "buffer", "path" },
       },
 
       -- experimental signature help support
@@ -43,5 +36,30 @@ return {
     -- allows extending the providers array elsewhere in your config
     -- without having to redefine it
     opts_extend = { "sources.default" },
+  },
+  {
+    "saghen/blink.pairs",
+    version = "*", -- (recommended) only required with prebuilt binaries
+    dependencies = "saghen/blink.download",
+    opts = {
+      mappings = {
+        enabled = true,
+        disabled_filetypes = {},
+        pairs = {},
+      },
+      highlights = {
+        enabled = true,
+        groups = {
+          "BlinkPairsOrange",
+          "BlinkPairsPurple",
+          "BlinkPairsBlue",
+        },
+        matchparen = {
+          enabled = true,
+          group = "MatchParen",
+        },
+      },
+      debug = false,
+    },
   },
 }

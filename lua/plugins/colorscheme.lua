@@ -13,7 +13,6 @@ return {
       },
       integrations = {
         alpha = true,
-        cmp = true,
         dap = true,
         dap_ui = true,
         dashboard = false,
@@ -21,12 +20,11 @@ return {
         flash = true,
         gitsigns = true,
         harpoon = true,
-        leap = false,
-        lsp_saga = false,
         lsp_trouble = true,
         markdown = true,
-        mason = true,
-        mini = false,
+        blink_cmp = {
+          style = 'bordered',
+        },
         native_lsp = {
           enabled = true,
           virtual_text = {

@@ -19,18 +19,36 @@ return {
       ensure_installed = {
         "bash",
         "comment",
-        "css",
+        -- HTML
         "html",
-        "javascript",
+        -- CSS
+        "css", "scss",
+        -- JS / TS
+        "javascript", "jsdoc", "typescript", "tsx", "vue", "json5",
+        -- Docker
+        "dockerfile",
+        -- Git
+        "git_config", "gitcommit", "git_rebase", "gitignore", "gitattributes",
+        -- Go
+        "go", "gomod", "gowork", "gosum",
+        -- Lua
+        "lua", "luadoc",
+        -- Nix
+        "nix",
+        -- PHP
+        "php", "phpdoc",
+        -- Python
+        "python",
+        -- Terraform
+        "terraform", "hcl",
+
         "kdl",
         "latex",
         "make",
         "regex",
-        "scss",
         "sql",
         "toml",
         "tsx",
-        "vue",
         "xml",
       },
       incremental_selection = {
