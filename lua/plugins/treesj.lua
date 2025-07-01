@@ -6,8 +6,8 @@ return {
     "TSJJoin",
   },
   keys = {
-    { "gJ", "<cmd>TSJJoin<cr>", desc = "Join using treesitter" },
-    { "gS", "<cmd>TSJSplit<cr>", desc = "Split using treesitter" },
+    { "gJ", "<cmd>TSJJoin<cr>", desc = "Join using treesitter (TreeSJ)" },
+    { "gS", "<cmd>TSJSplit<cr>", desc = "Split using treesitter (TreeSJ)" },
   },
   opts = {
     use_default_keymaps = false,

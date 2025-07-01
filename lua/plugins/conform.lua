@@ -11,7 +11,7 @@ return {
           end)
         end,
         mode = { "n", "v" },
-        desc = "Format buffer",
+        desc = "Format buffer (Conform)",
       },
     },
     opts = {

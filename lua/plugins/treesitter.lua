@@ -6,8 +6,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
-      { "<c-space>", desc = "Increment Selection" },
-      { "<bs>", desc = "Decrement Selection", mode = "x" },
+      { "<c-space>", desc = "Increment Selection (Treesitter)" },
+      { "<bs>", desc = "Decrement Selection (Treesitter)", mode = "x" },
     },
     opts = {
       highlight = {

@@ -4,7 +4,12 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
     keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview" },
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview (Diffview)" },
+      { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Close Diffview (Diffview)" },
+      { "<leader>gh", "<cmd>DiffviewFileHistory<cr>", desc = "File History (Diffview)" },
+      { "<leader>gH", "<cmd>DiffviewFileHistory %<cr>", desc = "Current File History (Diffview)" },
+      { "<leader>gm", "<cmd>DiffviewOpen HEAD~1<cr>", desc = "Compare with Previous Commit (Diffview)" },
+      { "<leader>gt", "<cmd>DiffviewToggleFiles<cr>", desc = "Toggle File Panel (Diffview)" },
     },
     opts = {
       view = {

@@ -31,9 +31,9 @@ return {
     config = function(_, opts)
       require("ufo").setup(opts)
 
-      vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
-      vim.keymap.set("n", "zm", require("ufo").closeAllFolds, { desc = "Close All Folds" })
-      vim.keymap.set("n", "zK", require("ufo").peekFoldedLinesUnderCursor, { desc = "Peek folds" })
+      vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds (UFO)" })
+      vim.keymap.set("n", "zm", require("ufo").closeAllFolds, { desc = "Close All Folds (UFO)" })
+      vim.keymap.set("n", "zK", require("ufo").peekFoldedLinesUnderCursor, { desc = "Peek folds (UFO)" })
 
       vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
       vim.opt.foldlevelstart = 99
