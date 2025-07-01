@@ -5,6 +5,7 @@ vim.lsp.enable({
   "css-ls",
   "docker-ls",
   "gopls",
+  "harper",
   "html-ls",
   "intelephense",
   "json-ls",
