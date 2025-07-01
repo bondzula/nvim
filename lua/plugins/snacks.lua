@@ -24,6 +24,8 @@ return {
       words = { enabled = true },
       dim = { enabled = false },
       picker = {
+        hidden = true,
+        ignored = true,
         sources = {
           explorer = {
             layout = {
