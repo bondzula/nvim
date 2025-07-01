@@ -3,7 +3,16 @@ return {
     "stevearc/conform.nvim",
     event = "BufReadPost",
     keys = {
-      { "<leader>cf", '<cmd>lua require("conform").format()<cr>', desc = "[C]ode [F]ormat" },
+      {
+        "<leader>cf",
+        function()
+          require("conform").format({ async = true }, function(err, did_edit)
+            if not err and did_edit then vim.notify("Code formatted", vim.log.levels.INFO, { title = "Conform" }) end
+          end)
+        end,
+        mode = { "n", "v" },
+        desc = "Format buffer",
+      },
     },
     opts = {
       formatters_by_ft = {
@@ -34,21 +43,15 @@ return {
         terraform = { "terraform_fmt" },
         tf = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },
-
+        -- Shell
         shell = { "shfmt" },
+        bash = { "shfmt" },
+
         -- Use the "_" filetype to run formatters on filetypes that don't
         -- have other formatters configured.
         ["_"] = { "trim_whitespace" },
       },
     },
-    format_on_save = {
-      timeout_ms = 300,
-      lsp_fallback = true,
-    },
-    config = function(_, opts)
-      require("conform").setup(opts)
-
-      -- vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end,
+    init = function() vim.o.formatexpr = "v:lua.require'conform'.formatexpr()" end,
   },
 }
