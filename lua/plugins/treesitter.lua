@@ -22,25 +22,41 @@ return {
         -- HTML
         "html",
         -- CSS
-        "css", "scss",
+        "css",
+        "scss",
         -- JS / TS
-        "javascript", "jsdoc", "typescript", "tsx", "vue", "json5",
+        "javascript",
+        "jsdoc",
+        "typescript",
+        "tsx",
+        "vue",
+        "json5",
         -- Docker
         "dockerfile",
         -- Git
-        "git_config", "gitcommit", "git_rebase", "gitignore", "gitattributes",
+        "git_config",
+        "gitcommit",
+        "git_rebase",
+        "gitignore",
+        "gitattributes",
         -- Go
-        "go", "gomod", "gowork", "gosum",
+        "go",
+        "gomod",
+        "gowork",
+        "gosum",
         -- Lua
-        "lua", "luadoc",
+        "lua",
+        "luadoc",
         -- Nix
         "nix",
         -- PHP
-        "php", "phpdoc",
+        "php",
+        "phpdoc",
         -- Python
         "python",
         -- Terraform
-        "terraform", "hcl",
+        "terraform",
+        "hcl",
 
         "kdl",
         "latex",
@@ -69,9 +85,7 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
   },
 
   {

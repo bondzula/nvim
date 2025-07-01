@@ -19,7 +19,7 @@ return {
             end
             -- fallback to default
             return fallback(document_path, image_path)
-          end
+          end,
         },
         neorg = {
           enabled = true,

@@ -1,0 +1,14 @@
+# The width of a single line.
+line_endings = "Unix"
+
+# The style of indentation to use.
+indent_type = "Spaces"
+
+# The number of spaces to use for indentation.
+indent_width = 2
+
+# The style of quotes to use for strings.
+quote_style = "AutoPreferDouble"
+
+# Whether to collapse simple function and table bodies to a single line.
+collapse_simple_statement = "Always"

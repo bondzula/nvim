@@ -1,8 +1,8 @@
 local blink = require("blink.cmp")
 
 return {
-  cmd = { 'nixd' },
-  filetypes = { 'nix' },
+  cmd = { "nixd" },
+  filetypes = { "nix" },
   root_markers = { "flake.nix", ".git" },
   capabilities = vim.tbl_deep_extend(
     "force",
@@ -11,4 +11,3 @@ return {
     blink.get_lsp_capabilities()
   ),
 }
-

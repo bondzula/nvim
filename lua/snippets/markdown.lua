@@ -10,9 +10,7 @@ end
 ls.add_snippets("markdown", {
   ls.s("daily", {
     ls.t({ "---", "cssclasses:", "  - daily", "  - " }),
-    ls.f(function()
-      return os.date("%A"):lower()
-    end),
+    ls.f(function() return os.date("%A"):lower() end),
     ls.t({ "", "sleepScore: " }),
     ls.i(1),
     ls.t({ "", "weight: " }),
@@ -46,9 +44,7 @@ ls.add_snippets("markdown", {
 ls.add_snippets("markdown", {
   ls.s("ts", {
     ls.t({ "- **" }),
-    ls.f(function()
-      return os.date("%H:%M")
-    end),
+    ls.f(function() return os.date("%H:%M") end),
     ls.t({ "**: " }),
     ls.i(1),
   }),
@@ -59,13 +55,9 @@ ls.add_snippets("markdown", {
   ls.s("project", {
     ls.t({ "---" }),
     ls.t({ "", "date: " }),
-    ls.f(function()
-      return '"[[' .. os.date("%Y-%m-%d") .. ']]"'
-    end),
+    ls.f(function() return '"[[' .. os.date("%Y-%m-%d") .. ']]"' end),
     ls.t({ "", "time: " }),
-    ls.f(function()
-      return os.date("%H:%M")
-    end),
+    ls.f(function() return os.date("%H:%M") end),
     ls.t({ "", "tags:", "  - project" }),
     ls.i(1),
     ls.t({ "", "area: " }),
@@ -88,13 +80,9 @@ ls.add_snippets("markdown", {
   ls.s("area", {
     ls.t({ "---" }),
     ls.t({ "", "date: " }),
-    ls.f(function()
-      return '"[[' .. os.date("%Y-%m-%d") .. ']]"'
-    end),
+    ls.f(function() return '"[[' .. os.date("%Y-%m-%d") .. ']]"' end),
     ls.t({ "", "time: " }),
-    ls.f(function()
-      return os.date("%H:%M")
-    end),
+    ls.f(function() return os.date("%H:%M") end),
     ls.t({ "", "tags:", "  - area" }),
     ls.i(1),
     ls.t({ "", "---", "", "# " }),
@@ -109,13 +97,9 @@ ls.add_snippets("markdown", {
   ls.s("resource", {
     ls.t({ "---" }),
     ls.t({ "", "date: " }),
-    ls.f(function()
-      return '"[[' .. os.date("%Y-%m-%d") .. ']]"'
-    end),
+    ls.f(function() return '"[[' .. os.date("%Y-%m-%d") .. ']]"' end),
     ls.t({ "", "time: " }),
-    ls.f(function()
-      return os.date("%H:%M")
-    end),
+    ls.f(function() return os.date("%H:%M") end),
     ls.t({ "", "tags:", "  - resource" }),
     ls.i(1),
     ls.t({ "", "aliases: " }),
@@ -138,13 +122,9 @@ ls.add_snippets("markdown", {
   ls.s("fleeting", {
     ls.t({ "---" }),
     ls.t({ "", "date: " }),
-    ls.f(function()
-      return '"[[' .. os.date("%Y-%m-%d") .. ']]"'
-    end),
+    ls.f(function() return '"[[' .. os.date("%Y-%m-%d") .. ']]"' end),
     ls.t({ "", "time: " }),
-    ls.f(function()
-      return os.date("%H:%M")
-    end),
+    ls.f(function() return os.date("%H:%M") end),
     ls.t({ "", "tags:" }),
     ls.i(1),
     ls.t({ "", "aliases: " }),
@@ -167,9 +147,7 @@ ls.add_snippets("markdown", {
   ls.s("person", {
     ls.t({ "---" }),
     ls.t({ "", "date: " }),
-    ls.f(function()
-      return "[[" .. os.date("%Y-%m-%d") .. "]]"
-    end),
+    ls.f(function() return "[[" .. os.date("%Y-%m-%d") .. "]]" end),
     ls.t({ "", "tags: person" }),
     ls.i(1),
     ls.t({ "", "role: " }),
@@ -196,13 +174,9 @@ ls.add_snippets("markdown", {
   ls.s("meeting", {
     ls.t({ "---" }),
     ls.t({ "", "date: " }),
-    ls.f(function()
-      return "[[" .. os.date("%Y-%m-%d") .. "]]"
-    end),
+    ls.f(function() return "[[" .. os.date("%Y-%m-%d") .. "]]" end),
     ls.t({ "", "time: " }),
-    ls.f(function()
-      return os.date("%H:%M")
-    end),
+    ls.f(function() return os.date("%H:%M") end),
     ls.t({ "", "project: " }),
     ls.i(1),
     ls.t({ "", "attendees: " }),

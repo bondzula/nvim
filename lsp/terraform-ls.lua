@@ -1,9 +1,9 @@
 local blink = require("blink.cmp")
 
 return {
-  cmd = { 'terraform-ls', 'serve' },
-  filetypes = { 'terraform', 'terraform-vars' },
-  root_markers = { '.terraform', '.git'},
+  cmd = { "terraform-ls", "serve" },
+  filetypes = { "terraform", "terraform-vars" },
+  root_markers = { ".terraform", ".git" },
   capabilities = vim.tbl_deep_extend(
     "force",
     {},
@@ -11,4 +11,3 @@ return {
     blink.get_lsp_capabilities()
   ),
 }
-

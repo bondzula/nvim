@@ -23,7 +23,7 @@ return {
         lsp_trouble = true,
         markdown = true,
         blink_cmp = {
-          style = 'bordered',
+          style = "bordered",
         },
         native_lsp = {
           enabled = true,

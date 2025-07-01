@@ -28,6 +28,9 @@ vim.diagnostic.config({
     border = "rounded",
     source = true,
   },
+  jump = {
+    float = true,
+  },
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -52,14 +55,10 @@ local function restart_lsp(bufnr)
     vim.lsp.stop_client(client.id)
   end
 
-  vim.defer_fn(function()
-    vim.cmd("edit")
-  end, 100)
+  vim.defer_fn(function() vim.cmd("edit") end, 100)
 end
 
-vim.api.nvim_create_user_command("LspRestart", function()
-  restart_lsp()
-end, {})
+vim.api.nvim_create_user_command("LspRestart", function() restart_lsp() end, {})
 
 local function lsp_status()
   local bufnr = vim.api.nvim_get_current_buf()
@@ -81,27 +80,13 @@ local function lsp_status()
     -- Check capabilities
     local caps = client.server_capabilities
     local features = {}
-    if caps.completionProvider then
-      table.insert(features, "completion")
-    end
-    if caps.hoverProvider then
-      table.insert(features, "hover")
-    end
-    if caps.definitionProvider then
-      table.insert(features, "definition")
-    end
-    if caps.referencesProvider then
-      table.insert(features, "references")
-    end
-    if caps.renameProvider then
-      table.insert(features, "rename")
-    end
-    if caps.codeActionProvider then
-      table.insert(features, "code_action")
-    end
-    if caps.documentFormattingProvider then
-      table.insert(features, "formatting")
-    end
+    if caps.completionProvider then table.insert(features, "completion") end
+    if caps.hoverProvider then table.insert(features, "hover") end
+    if caps.definitionProvider then table.insert(features, "definition") end
+    if caps.referencesProvider then table.insert(features, "references") end
+    if caps.renameProvider then table.insert(features, "rename") end
+    if caps.codeActionProvider then table.insert(features, "code_action") end
+    if caps.documentFormattingProvider then table.insert(features, "formatting") end
 
     print("  Features: " .. table.concat(features, ", "))
     print("")
@@ -237,25 +222,13 @@ local function lsp_info()
     -- Key capabilities
     local caps = client.server_capabilities
     local key_features = {}
-    if caps.completionProvider then
-      table.insert(key_features, "completion")
-    end
-    if caps.hoverProvider then
-      table.insert(key_features, "hover")
-    end
-    if caps.definitionProvider then
-      table.insert(key_features, "definition")
-    end
-    if caps.documentFormattingProvider then
-      table.insert(key_features, "formatting")
-    end
-    if caps.codeActionProvider then
-      table.insert(key_features, "code_action")
-    end
+    if caps.completionProvider then table.insert(key_features, "completion") end
+    if caps.hoverProvider then table.insert(key_features, "hover") end
+    if caps.definitionProvider then table.insert(key_features, "definition") end
+    if caps.documentFormattingProvider then table.insert(key_features, "formatting") end
+    if caps.codeActionProvider then table.insert(key_features, "code_action") end
 
-    if #key_features > 0 then
-      print("  Key features: " .. table.concat(key_features, ", "))
-    end
+    if #key_features > 0 then print("  Key features: " .. table.concat(key_features, ", ")) end
 
     print("")
   end
@@ -306,9 +279,7 @@ end
 
 local function git_branch()
   local ok, handle = pcall(io.popen, "git branch --show-current 2>/dev/null")
-  if not ok or not handle then
-    return ""
-  end
+  if not ok or not handle then return "" end
   local branch = handle:read("*a")
   handle:close()
   if branch and branch ~= "" then
@@ -320,14 +291,10 @@ end
 
 local function formatter_status()
   local ok, conform = pcall(require, "conform")
-  if not ok then
-    return ""
-  end
+  if not ok then return "" end
 
   local formatters = conform.list_formatters_to_run(0)
-  if #formatters == 0 then
-    return ""
-  end
+  if #formatters == 0 then return "" end
 
   local formatter_names = {}
   for _, formatter in ipairs(formatters) do
@@ -339,14 +306,10 @@ end
 
 local function linter_status()
   local ok, lint = pcall(require, "lint")
-  if not ok then
-    return ""
-  end
+  if not ok then return "" end
 
   local linters = lint.linters_by_ft[vim.bo.filetype] or {}
-  if #linters == 0 then
-    return ""
-  end
+  if #linters == 0 then return "" end
 
   return "󰁨 " .. table.concat(linters, ",")
 end

@@ -1,3 +1,7 @@
 globals = {
-	"vim",
+  "vim",
+  "Snacks",
+  "require",
+  "pcall",
+  "print",
 }

@@ -1,8 +1,8 @@
 local blink = require("blink.cmp")
 
 return {
-  cmd = { 'vscode-json-language-server', '--stdio' },
-  filetypes = { 'json', 'jsonc' },
+  cmd = { "vscode-json-language-server", "--stdio" },
+  filetypes = { "json", "jsonc" },
   root_markers = { ".git" },
   capabilities = vim.tbl_deep_extend(
     "force",
