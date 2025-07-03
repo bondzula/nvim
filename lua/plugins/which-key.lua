@@ -5,10 +5,13 @@ return {
     dependencies = {
       { "echasnovski/mini.icons", version = false },
     },
-    config = function()
+    opts = {
+      preset = "helix",
+    },
+    config = function(_, opts)
       local wk = require("which-key")
 
-      wk.setup()
+      wk.setup(opts)
       wk.add({
         {
           mode = { "n", "v" },
