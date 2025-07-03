@@ -30,7 +30,6 @@ return {
 
         -- Viewing changes
         map("n", "<leader>gk", gs.preview_hunk, "[G]it Preview hun[K] (Gitsigns)")
-        map("n", "<leader>gd", gs.diffthis, "[G]it [D]iff this (Gitsigns)")
 
         -- Toggles
         map("n", "<leader>tb", gs.toggle_current_line_blame, "[T]oggle Git [B]lame (Gitsigns)")
