@@ -23,6 +23,8 @@ return {
           { "<leader>q", group = "quit/session" },
           { "<leader>t", group = "tasks" },
           { "<leader>o", group = "octo" },
+          { "<leader>oi", group = "issues" },
+          { "<leader>op", group = "pull requests" },
           { "<leader>u", group = "toggle" },
           { "<leader>x", group = "diagnostics/quickfix" },
         },
