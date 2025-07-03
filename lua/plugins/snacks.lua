@@ -45,7 +45,8 @@ return {
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History (Snacks)" },
       { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History (Snacks)" },
       { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer (Snacks)" },
-      -- find
+      -- Files
+      { "<leader>fR", function() Snacks.rename.rename_file() end, desc = "Rename File (Snacks)" },
       { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects (Snacks)" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent (Snacks)" },
       -- search
@@ -57,11 +58,8 @@ return {
       { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer (Snacks)" },
       { "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer (Snacks)" },
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer (Snacks)" },
-      { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File (Snacks)" },
-      { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse (Snacks)", mode = { "n", "v" } },
+      { "<leader>go", function() Snacks.gitbrowse() end, desc = "Git Browse (Snacks)", mode = { "n", "v" } },
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications (Snacks)" },
-      { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference (Snacks)", mode = { "n", "t" } },
-      { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference (Snacks)", mode = { "n", "t" } },
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {
