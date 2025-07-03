@@ -32,8 +32,7 @@ return {
         map("n", "<leader>gk", gs.preview_hunk, "[G]it Preview hun[K] (Gitsigns)")
 
         -- Toggles
-        map("n", "<leader>tb", gs.toggle_current_line_blame, "[T]oggle Git [B]lame (Gitsigns)")
-        map("n", "<leader>td", gs.toggle_deleted, "[T]oggle [D]eleted lines (Gitsigns)")
+        map("n", "<leader>gb", gs.toggle_current_line_blame, "[T]oggle Git [B]lame (Gitsigns)")
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk (Gitsigns)")
