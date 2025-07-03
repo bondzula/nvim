@@ -19,6 +19,10 @@ vim.lsp.enable({
   "zls",
 })
 
+-- Keymaps
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
+
 vim.diagnostic.config({
   virtual_text = true,
   underline = true,
