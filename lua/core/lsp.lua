@@ -7,7 +7,7 @@ vim.lsp.enable({
   "gopls",
   "harper",
   "html-ls",
-  "intelephense",
+  "phpactor",
   "json-ls",
   "lua-ls",
   "nixd",
