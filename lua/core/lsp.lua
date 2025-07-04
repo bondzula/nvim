@@ -24,16 +24,13 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to Declaration" })
 
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
   underline = true,
   update_in_insert = false,
   severity_sort = true,
   float = {
     border = "rounded",
     source = true,
-  },
-  jump = {
-    float = true,
   },
   signs = {
     text = {
