@@ -22,7 +22,7 @@ return {
     "haskell",
     "cmake",
     "typst",
-    "php",
+    -- "php",
     "dart",
   },
   root_markers = { ".git" },
