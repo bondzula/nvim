@@ -1,4 +1,5 @@
 vim.lsp.enable({
+  "astro-ls",
   "bash-ls",
   "clangd",
   "cmake-ls",
@@ -7,10 +8,10 @@ vim.lsp.enable({
   "gopls",
   "harper",
   "html-ls",
-  "phpactor",
   "json-ls",
   "lua-ls",
   "nixd",
+  "phpactor",
   "pyright",
   "tailwindcss",
   "terraform-ls",

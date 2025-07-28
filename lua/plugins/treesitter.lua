@@ -25,12 +25,13 @@ return {
         "css",
         "scss",
         -- JS / TS
+        "astro",
         "javascript",
         "jsdoc",
-        "typescript",
-        "tsx",
-        "vue",
         "json5",
+        "tsx",
+        "typescript",
+        "vue",
         -- Docker
         "dockerfile",
         -- Git
