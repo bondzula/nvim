@@ -22,6 +22,7 @@ return {
         -- HTML
         html = { "prettierd" },
         -- JS / TS
+        astro = { "prettierd", "prettier", stop_after_first = true },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         javascriptreact = { "prettierd", "prettier", stop_after_first = true },
         json = { "prettierd", "prettier", stop_after_first = true },
